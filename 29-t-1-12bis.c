@@ -10,13 +10,14 @@ int main(int argc, char const *argv[])
     state = OUT;
 
     while ( (c = getchar()) != EOF ) {
-        if ( c == ' ' || c == '\t' || c == '\n')
-            state = OUT;
-        else {
-            if (state == OUT) {
-                state = IN;
+        if ( c == ' ' || c == '\t' || c == '\n') {
+            if (state == IN)
                 putchar('\n');
-            }
+            state = OUT;
+        }
+        else {
+            if (state == OUT)
+                state = IN;
             putchar(c);
         }
     }
